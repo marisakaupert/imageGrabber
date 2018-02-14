@@ -9,6 +9,10 @@ _logger = logging.getLogger(__name__)
 _logger.setLevel(logging.DEBUG)
 
 
+import screenGrab
+reload(screenGrab)
+
+
 def getMayaWindow():
     pointer = omui.MQtUtil.mainWindow()
     if pointer:
@@ -43,4 +47,12 @@ class ImageGrabberUI(QtGui.QDialog):
         self.gridLayout.addLayout(self.verticalLayout, 0, 0, 1, 1)
 
         self.setLayout(self.gridLayout)
+        self.setWindowTitle("SCREEN GRAB DEMO TOOL")
+        self.makeConnections()
         self.show()
+
+    def makeConnections(self):
+        self.screenGrabPushButton.clicked.connect(self.addImageToLayout)
+
+    def addImageToLayout(self):
+        screenGrab.getScreenGrab()
