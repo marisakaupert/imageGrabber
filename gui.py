@@ -43,6 +43,9 @@ class ImageGrabberUI(QtGui.QDialog):
         self.imagePathLabel = QtGui.QLabel("Path:")
         self.verticalLayout.addWidget(self.imagePathLabel)
         self.pathLineEdit = QtGui.QLineEdit()
+        self.pathLineEdit.setText("Path here")
+        self.pathLineEdit.isReadOnly(True)
+        self.pathLineEdit.setText("Path here")
         self.verticalLayout.addWidget(self.pathLineEdit)
         self.gridLayout.addLayout(self.verticalLayout, 0, 0, 1, 1)
 
