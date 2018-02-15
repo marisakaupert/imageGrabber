@@ -57,9 +57,8 @@ class ImageGrabberUI(QtGui.QDialog):
 
     def addImageToLayout(self):
         screenGrab.getScreenGrab(self.count)
+        screenGrab.cropImage(self.count)
         self.updateCount()
 
     def updateCount(self):
         self.count += 1
-
-
