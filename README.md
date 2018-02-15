@@ -5,3 +5,6 @@ These are what I got from the meeting:
     2. Have it be set to a certain resoluton so the image is never skewed
     3. Have the image be saved to a path
     4. The image needs 'tags' so it know where to store the image and upload it on Shotgun
+
+
+filmstrip thumbnail on shotgun?
