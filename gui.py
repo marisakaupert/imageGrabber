@@ -45,6 +45,7 @@ class ImageGrabberUI(QtGui.QDialog):
         self.pathLineEdit = QtGui.QLineEdit()
         self.verticalLayout.addWidget(self.pathLineEdit)
         self.gridLayout.addLayout(self.verticalLayout, 0, 0, 1, 1)
+        self.count = 0
 
         self.setLayout(self.gridLayout)
         self.setWindowTitle("SCREEN GRAB DEMO TOOL")
@@ -55,4 +56,10 @@ class ImageGrabberUI(QtGui.QDialog):
         self.screenGrabPushButton.clicked.connect(self.addImageToLayout)
 
     def addImageToLayout(self):
-        screenGrab.getScreenGrab()
+        screenGrab.getScreenGrab(self.count)
+        self.updateCount()
+
+    def updateCount(self):
+        self.count += 1
+
+
