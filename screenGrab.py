@@ -10,7 +10,7 @@ if not os.path.exists(imagesFolderPath):
     os.makedirs(imagesFolderPath)
 
 
-def getScreenGrab():
+def getScreenGrab(count=None):
     import maya.OpenMaya
     import maya.OpenMayaUI
 
@@ -20,6 +20,6 @@ def getScreenGrab():
 
     view.readColorBuffer(image, True)
 
-    imageFileName = os.path.join(imagesFolderPath, "{0}.png".format("test"))
+    imageFileName = os.path.join(imagesFolderPath, "{0}.png".format(count))
 
     image.writeToFile(imageFileName, 'png')
