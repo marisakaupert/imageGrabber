@@ -3,7 +3,7 @@ import logging
 from PySide import QtGui, QtCore, QtUiTools
 from shiboken import wrapInstance
 import pymel.core as pm
-import maya.OpenMayaUI as omui 
+import maya.OpenMayaUI as omui
 
 _logger = logging.getLogger(__name__)
 _logger.setLevel(logging.DEBUG)
