@@ -1,7 +1,7 @@
 import os
 import logging
-from PySide import QtGui, QtCore, QtUiTools
-from shiboken import wrapInstance
+from PySide2 import QtWidgets, QtGui
+from shiboken2 import wrapInstance
 import pymel.core as pm
 import maya.OpenMayaUI as omui 
 
@@ -16,7 +16,7 @@ reload(screenGrab)
 def getMayaWindow():
     pointer = omui.MQtUtil.mainWindow()
     if pointer:
-        return wrapInstance(long(pointer), QtGui.QMainWindow)
+        return wrapInstance(long(pointer), QtWidgets.QMainWindow)
 
 window = None
 
@@ -29,33 +29,38 @@ def run():
     window.show()
 
 
-class ImageGrabberUI(QtGui.QDialog):
+class ImageGrabberUI(QtWidgets.QMainWindow):
     def __init__(self, parent=None):
         super(ImageGrabberUI, self).__init__(parent)
-
-        self.gridLayout = QtGui.QGridLayout()
-        self.verticalLayout = QtGui.QVBoxLayout()
+        
+        self.count = 0
+        
+        self.setCentralWidget(QtWidgets.QWidget(self)) 
+        self.gridLayout = QtWidgets.QGridLayout()
+        self.verticalLayout = QtWidgets.QVBoxLayout()
         self.verticalLayout.setContentsMargins(5, 5, 5, 5)
-        self.screenGrabPushButton = QtGui.QPushButton("Take Screenshot")
+        self.screenGrabPushButton = QtWidgets.QPushButton("Take Screenshot")
         self.verticalLayout.addWidget(self.screenGrabPushButton)
-        self.previousImagesLabel = QtGui.QLabel("Previous Screenshots:")
-        self.verticalLayout.addWidget(self.previousImagesLabel)
-        self.imagePathLabel = QtGui.QLabel("Path:")
+        self.imagePathLabel = QtWidgets.QLabel("Path:")
         self.verticalLayout.addWidget(self.imagePathLabel)
-        self.pathLineEdit = QtGui.QLineEdit()
-        self.pathLineEdit.setText("Path here")
-        self.pathLineEdit.isReadOnly(True)
+        self.pathLineEdit = QtWidgets.QLineEdit()
         self.pathLineEdit.setText("Path here")
         self.verticalLayout.addWidget(self.pathLineEdit)
         self.gridLayout.addLayout(self.verticalLayout, 0, 0, 1, 1)
 
-        self.setLayout(self.gridLayout)
-        self.setWindowTitle("SCREEN GRAB DEMO TOOL")
         self.makeConnections()
+        self.centralWidget().setLayout(self.gridLayout)
+        self.setWindowTitle("SCREEN GRAB DEMO TOOL")
         self.show()
+        
 
     def makeConnections(self):
-        self.screenGrabPushButton.clicked.connect(self.addImageToLayout)
+        self.screenGrabPushButton.clicked.connect(self.takeScreenshot)
 
-    def addImageToLayout(self):
-        screenGrab.getScreenGrab()
+    def takeScreenshot(self):
+        self.imagesFolderPath = screenGrab.getScreenGrab(self.count)
+        self.pathLineEdit.setText(self.imagesFolderPath)
+        self.updateCount()        
+
+    def updateCount(self):
+        self.count += 1

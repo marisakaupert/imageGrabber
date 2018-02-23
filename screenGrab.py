@@ -5,12 +5,13 @@ _logger = logging.getLogger(__name__)
 _logger.setLevel(logging.DEBUG)
 
 imagesFolderPath = os.path.join(os.path.dirname(__file__), 'screenCaptures')
+imagesConvertPath = os.path.join(os.path.dirname(__file__), 'imagesConvert.py')
 
 if not os.path.exists(imagesFolderPath):
     os.makedirs(imagesFolderPath)
 
 
-def getScreenGrab():
+def getScreenGrab(count=None):
     import maya.OpenMaya
     import maya.OpenMayaUI
 
@@ -20,6 +21,9 @@ def getScreenGrab():
 
     view.readColorBuffer(image, True)
 
-    imageFileName = os.path.join(imagesFolderPath, "{0}.png".format("test"))
+    imageFileName = os.path.join(
+        imagesFolderPath, "model_{0}.png".format(count))
 
     image.writeToFile(imageFileName, 'png')
+
+    return imagesFolderPath
