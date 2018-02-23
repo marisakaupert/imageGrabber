@@ -5,7 +5,6 @@ _logger = logging.getLogger(__name__)
 _logger.setLevel(logging.DEBUG)
 
 imagesFolderPath = os.path.join(os.path.dirname(__file__), 'screenCaptures')
-imagesConvertPath = os.path.join(os.path.dirname(__file__), 'imagesConvert.py')
 
 if not os.path.exists(imagesFolderPath):
     os.makedirs(imagesFolderPath)

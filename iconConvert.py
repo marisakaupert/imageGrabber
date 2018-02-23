@@ -3,7 +3,7 @@ import argparse
 from PIL import Image
 
 
-""" 
+"""
 import iconConvert
 reload(iconConvert)
 startImage = r'Insert path here, Ex: r'C:\Users\Marisa\Documents\cgCircuit\screenCaptures\oval.png'
