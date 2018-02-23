@@ -60,7 +60,7 @@ class ImageGrabberUI(QtWidgets.QMainWindow):
     def takeScreenshot(self):
         self.imagesFolderPath = screenGrab.getScreenGrab(self.count)
         self.pathLineEdit.setText(self.imagesFolderPath)
-        self.updateCount()        
+        self.updateCount()
 
     def updateCount(self):
         self.count += 1
