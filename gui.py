@@ -64,3 +64,5 @@ class ImageGrabberUI(QtWidgets.QMainWindow):
 
     def updateCount(self):
         self.count += 1
+
+        
