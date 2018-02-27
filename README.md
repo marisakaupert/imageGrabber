@@ -1,3 +1,1 @@
-Tool to grab images in Maya. 
-
-Re-think tool for personal use.
+Tool to grab images in Maya and print path to images.
