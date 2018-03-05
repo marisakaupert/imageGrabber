@@ -32,9 +32,7 @@ def run():
 class ImageGrabberUI(QtWidgets.QMainWindow):
     def __init__(self, parent=None):
         super(ImageGrabberUI, self).__init__(parent)
-        
-        self.count = 0
-        
+
         self.setCentralWidget(QtWidgets.QWidget(self)) 
         self.gridLayout = QtWidgets.QGridLayout()
         self.verticalLayout = QtWidgets.QVBoxLayout()
@@ -44,25 +42,19 @@ class ImageGrabberUI(QtWidgets.QMainWindow):
         self.imagePathLabel = QtWidgets.QLabel("Path:")
         self.verticalLayout.addWidget(self.imagePathLabel)
         self.pathLineEdit = QtWidgets.QLineEdit()
-        self.pathLineEdit.setText("Path here")
+        self.pathLineEdit.setPlaceholderText("Path here")
+        self.pathLineEdit.setEnabled(False)
         self.verticalLayout.addWidget(self.pathLineEdit)
         self.gridLayout.addLayout(self.verticalLayout, 0, 0, 1, 1)
 
         self.makeConnections()
         self.centralWidget().setLayout(self.gridLayout)
-        self.setWindowTitle("SCREEN GRAB DEMO TOOL")
+        self.setWindowTitle("SCREEN GRAB TOOL")
         self.show()
-        
 
     def makeConnections(self):
         self.screenGrabPushButton.clicked.connect(self.takeScreenshot)
 
     def takeScreenshot(self):
-        self.imagesFolderPath = screenGrab.getScreenGrab(self.count)
-        self.pathLineEdit.setText(self.imagesFolderPath)
-        self.updateCount()
-
-    def updateCount(self):
-        self.count += 1
-
-        
+        screenGrab.saveImage(doScreenGrab=True, count=0)
+        # self.pathLineEdit.setText(self.imagesFolderPath)
